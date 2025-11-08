@@ -1,1 +1,1 @@
-My personal website. Planning to change it
+This was supposed to be a personal portfolio/website. Will get around to it at some point.
