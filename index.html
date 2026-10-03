@@ -86,13 +86,21 @@
           height: 220px;
         }
       }
+      .avatar {
+        width: 200px;
+        height: 200px; /* explicit, don't rely on aspect-ratio */
+        flex: none; /* stops flex/grid parents from stretching it */
+        object-fit: cover;
+        object-position: 50% 15%;
+        border-radius: 50%;
+      }
     </style>
   </head>
 
   <body>
     <main>
       <div>
-        <img src="Personal_photo.JPG" alt="Kamran Badirov" />
+        <img src="image.png" alt="Kamran Badirov" class="avatar" />
       </div>
       <div>
         <h1>Kamran Badirov</h1>
