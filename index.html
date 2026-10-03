@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Kamran Badirov — software engineer in Toronto."
+    />
+    <title>Kamran Badirov</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #fff;
+        color: #171717;
+        font:
+          16px/1.5 Arial,
+          Helvetica,
+          sans-serif;
+      }
+      main {
+        width: min(760px, calc(100% - 40px));
+        min-height: 100svh;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 48px;
+        padding: 64px 0;
+        text-align: center;
+      }
+      img {
+        display: block;
+        width: 220px;
+        height: 280px;
+        object-fit: cover;
+        object-position: center;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(28px, 5vw, 36px);
+        line-height: 1.15;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+      p {
+        margin: 0 0 22px;
+        color: #555;
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      a {
+        color: #171717;
+        text-underline-offset: 4px;
+      }
+      a:hover {
+        color: #666;
+      }
+
+      #email-link {
+        display: inline-block;
+        width: 42px;
+        text-align: center;
+        transition: opacity 0.2s ease;
+      }
+
+      #email-link.copied {
+        cursor: default;
+      }
+      @media (max-width: 560px) {
+        main {
+          min-height: auto;
+          padding: 64px 0;
+          flex-direction: column;
+          align-items: center;
+          gap: 28px;
+        }
+        img {
+          width: 180px;
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div>
+        <img src="Personal_photo.jpg" alt="Kamran Badirov" />
+      </div>
+      <div>
+        <h1>Kamran Badirov</h1>
+        <p>
+          Software engineer interested in computing systems<br />Toronto, Canada
+        </p>
+        <nav aria-label="Social links">
+          <a
+            href="https://github.com/kamranbadirov"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/badirov-kamran/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          >
+          <a href="#" id="email-link">Email</a>
+        </nav>
+      </div>
+    </main>
+    <script>
+      const email = "kamranbadirov@gmail.com";
+      const emailLink = document.getElementById("email-link");
+
+      let copied = false;
+
+      emailLink.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        if (copied) return;
+
+        copied = true;
+        emailLink.classList.add("copied");
+
+        await navigator.clipboard.writeText(email);
+
+        // Fade out "Email"
+        emailLink.style.opacity = "0";
+
+        setTimeout(() => {
+          emailLink.textContent = "Copied";
+          emailLink.style.opacity = "1";
+        }, 200);
+
+        // After 1.8 seconds, fade out "Copied"
+        setTimeout(() => {
+          emailLink.style.opacity = "0";
+
+          setTimeout(() => {
+            emailLink.textContent = "Email";
+            emailLink.style.opacity = "1";
+
+            copied = false;
+            emailLink.classList.remove("copied");
+          }, 200);
+        }, 1800);
+      });
+    </script>
+  </body>
+</html>
